@@ -1,0 +1,6 @@
+[submodule "gnext_frontend"]
+	path = gnext_frontend
+	url = https://github.com/DyHealthNet/dyhealthnetlight_frontend.git
+[submodule "gnext_backend"]
+	path = gnext_backend
+	url = https://github.com/DyHealthNet/dyhealthnetlight_backend.git

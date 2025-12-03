@@ -1,0 +1,64 @@
+version: "3.9"
+
+services:
+  typesense:
+    image: typesense/typesense:29.0.rc15
+    container_name: gnext-typesense-${STUDY_ACRONYM:-default}
+    volumes:
+      - ${TYPESENSE_DATA_DIR:-./typesense_volume}:/data
+    environment:
+      - TYPESENSE_DATA_DIR=/data
+      - TYPESENSE_API_KEY=${VITE_TYPESENSE_KEY}
+    ports:
+      - "${VITE_TYPESENSE_PORT:-8108}:8108"
+    networks:
+      - default
+
+  gnext-backend:
+    build:
+      context: ./gnext_backend
+      dockerfile: Dockerfile
+    image: gnext-backend-${STUDY_ACRONYM:-default}:latest
+    container_name: gnext-backend-${STUDY_ACRONYM:-default}
+    env_file:
+      - .env
+    environment:
+      - VITE_TYPESENSE_HOST=typesense
+      - VITE_TYPESENSE_PORT=8108
+    volumes:
+      - ${PHENO_FILE}:${PHENO_FILE}:ro
+      - ${NF_DATA_DIR}:${NF_DATA_DIR}:rw
+    ports:
+      - "${VITE_BACKEND_PORT:-8000}:8000"
+    command: >
+      sh -c "python init_typesense.py &&
+             gunicorn gnext.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 300"
+    depends_on:
+      - typesense
+    networks:
+      - default
+
+  gnext-frontend:
+    build:
+      context: .
+      dockerfile: gnext_frontend/Dockerfile
+    image: gnext-frontend-${STUDY_ACRONYM:-default}:latest
+    container_name: gnext-frontend-${STUDY_ACRONYM:-default}
+    env_file:
+      - .env
+    environment:
+      - BACKEND_HOST=gnext-backend-${STUDY_ACRONYM:-default}
+      - TYPESENSE_HOST=typesense
+      - VITE_TYPESENSE_KEY=${VITE_TYPESENSE_KEY}
+    ports:
+      - "${VITE_FRONTEND_PORT:-80}:80"
+    depends_on:
+      - typesense
+      - gnext-backend
+    networks:
+      - default
+
+networks:
+  default:
+    name: gnext-${STUDY_ACRONYM:-default}
+    driver: bridge
