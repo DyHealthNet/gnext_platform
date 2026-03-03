@@ -131,4 +131,7 @@ ENV_FILE=.env.lipids COMPOSE_PROJECT_NAME=gnext_lipids docker-compose --env-file
 If you have any problems with the deployment of your platform, feel free to open a GitHub issue at any time. We are happy to help you and make GNExT applicable to any study!
 
 ## Citation
-TBA
+
+Bridging the gap between genome-wide association studies and network medicine with GNExT
+Lis Arend, Fabian Woller, Bastienne Rehor, David Emmert, Johannes Frasnelli, Christian Fuchsberger, David B. Blumenthal, Markus List
+bioRxiv 2026.01.30.702559; doi: https://doi.org/10.64898/2026.01.30.702559
