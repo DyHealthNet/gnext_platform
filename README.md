@@ -89,7 +89,7 @@ docker-compose up -d --build
 In cases where the Typesense engine requires more time to initialize—for example, when indexing more than 40 million variants (default timeout: 600 seconds)—it may not become ready before the backend attempts to connect. If this occurs, wait briefly and then redeploy the backend and frontend using:
 
 ```
-docker-compose up -d gnext_frontend gnext_backend
+docker-compose up -d gnext-frontend gnext-backend
 ```
 You can always check the currently running docker containers with: ```docker ps```
 
