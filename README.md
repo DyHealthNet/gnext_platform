@@ -10,7 +10,7 @@ A web-based platform that builds on PheWeb’s interactive, scalable, and decent
 By including MAGMA and Drugst.One, GNExT allows its users to study genetic variants on the network level down to the identification of potential drug repurposing candidates. Our solution advances over the current state of the art platform PheWeb by offering a highly standardized Nextflow pipeline for data import and processing, allowing researchers to easily deploy their study results on a web interface. 
 
 <div align="center">
-  <img width="800"alt="GNExT_Logo_Black" src="assets/gnext_intro.png" />
+  <img width="800"alt="GNExT_Logo_Black" src="assets/gnext_intro_extended.png" />
     <p><em>Overview of the GNExT Tool</em></p>
 
 </div>
