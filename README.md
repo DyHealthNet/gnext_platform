@@ -132,6 +132,4 @@ If you have any problems with the deployment of your platform, feel free to open
 
 ## Citation
 
-Bridging the gap between genome-wide association studies and network medicine with GNExT
-Lis Arend, Fabian Woller, Bastienne Rehor, David Emmert, Johannes Frasnelli, Christian Fuchsberger, David B. Blumenthal, Markus List
-bioRxiv 2026.01.30.702559; doi: https://doi.org/10.64898/2026.01.30.702559
+Arend, L., Woller, F., Rehor, B. et al. Bridging the gap between GWAS and network medicine with GNExT. Nat Genet (2026). https://doi.org/10.1038/s41588-026-02708-6
