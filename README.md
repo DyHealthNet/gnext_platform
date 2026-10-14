@@ -10,7 +10,6 @@ A web-based platform that builds on PheWeb’s interactive, scalable, and decent
 By including MAGMA and Drugst.One, GNExT allows its users to study genetic variants on the network level down to the identification of potential drug repurposing candidates. Our solution advances over the current state of the art platform PheWeb by offering a highly standardized Nextflow pipeline for data import and processing, allowing researchers to easily deploy their study results on a web interface. 
 
 <div align="center">
-  <img width="800"alt="GNExT_Logo_Black" src="assets/gnext_intro.png" />
     <p><em>Overview of the GNExT Tool</em></p>
 
 </div>
@@ -111,11 +110,15 @@ docker-compose down
 
 If you need to deploy multiple platforms on the same machine, please use the following instructions, and always build with NO CACHE.
 
+For each study, use a separate environment file (e.g., `.env.olfaction` or `.env.lipids`). Make sure that `STUDY_ACRONYM`, `COMPOSE_PROJECT_NAME`, the host ports (`VITE_BACKEND_PORT`, `VITE_FRONTEND_PORT`, `VITE_TYPESENSE_PORT`), and `TYPESENSE_VOLUME_DIR` are unique for each deployment.
+
 ```
 # Build images with correct .env file
 ENV_FILE=.env.olfaction COMPOSE_PROJECT_NAME=gnext_olfaction docker-compose --env-file .env.olfaction build --no-cache
+
 # Run containers
 ENV_FILE=.env.olfaction COMPOSE_PROJECT_NAME=gnext_olfaction docker-compose --env-file .env.olfaction up -d
+
 # If you to remove the containers again
 COMPOSE_PROJECT_NAME=gnext_olfaction docker-compose --env-file .env.olfaction down
 ```
@@ -123,8 +126,12 @@ COMPOSE_PROJECT_NAME=gnext_olfaction docker-compose --env-file .env.olfaction do
 And then you can build similarly the second study:
 ```
 ENV_FILE=.env.lipids COMPOSE_PROJECT_NAME=gnext_lipids docker-compose --env-file .env.lipids build --no-cache
+
 ENV_FILE=.env.lipids COMPOSE_PROJECT_NAME=gnext_lipids docker-compose --env-file .env.lipids up -d
 ```
+
+> [!NOTE]
+> To simplify the configuration and deployment of multiple GNExT platforms, a Shiny app is also available at https://github.com/DyHealthNet/gnext_config_interface. See its repository for instructions on how to download and use it.
 
 ## Problems with Deployment
 
@@ -132,6 +139,4 @@ If you have any problems with the deployment of your platform, feel free to open
 
 ## Citation
 
-Bridging the gap between genome-wide association studies and network medicine with GNExT
-Lis Arend, Fabian Woller, Bastienne Rehor, David Emmert, Johannes Frasnelli, Christian Fuchsberger, David B. Blumenthal, Markus List
-bioRxiv 2026.01.30.702559; doi: https://doi.org/10.64898/2026.01.30.702559
+Arend, L., Woller, F., Rehor, B. et al. Bridging the gap between GWAS and network medicine with GNExT. Nat Genet (2026). https://doi.org/10.1038/s41588-026-02708-6
